@@ -27,6 +27,7 @@ end
 5.times do
   Distribution.create!(
     :book => books.sample,
-    :shop => shops.sample
+    :shop => shops.sample,
+    :copies_in_stock => Faker::Number.between(1, 20)
   )
 end

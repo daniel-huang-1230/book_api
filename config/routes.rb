@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   scope '/api' do
     scope '/v1' do
       scope '/publishers' do
-        # endpoint 1  #show
+        # endpoint 1
         get '/:publisher-id' => 'publishers#retrieve_shops'
       end
       scope '/shops' do
         # endpoint 2
-        put '/:shop-id/books/:book-id' => 'shops#update_as_sold'
+        put '/:shop-id/books' => 'shops#update_as_sold'
       end
     end
   end
