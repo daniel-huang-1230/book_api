@@ -6,30 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-3.times do
+publishers = 3.times.map do
   Publisher.create!()
 end
 
-10.times do
-  book = Book.create!(
+books = 10.times.map do
+  Book.create!(
     :title => Faker::Book.title, # random book title
+    publisher: publishers.sample,
   )
-  publisher_id = rand(1..3)
-  book.publisher_id = publisher_id
-  book.save
 end
 
-Shop.create!({
-  :name => 'Amazon',
-  :books_sold_count => 10
-  })
+shops = 5.times.map do
+  Shop.create!(
+    :name => Faker::Company.name,
+    :books_sold_count => Faker::Number.between(1, 20)
+  )
+end
 
-Shop.create!({
-  :name => 'Barnes and Noble',
-  :books_sold_count => 5
-  })
-
-Shop.create!({
-  :name => 'Good Will Bookstore',
-  :books_sold_count => 3
-  })
+5.times do
+  Distribution.create!(
+    :book => books.sample,
+    :shop => shops.sample
+  )
+end
