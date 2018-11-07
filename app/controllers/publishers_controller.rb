@@ -4,16 +4,20 @@ class PublishersController < ApplicationController
   # return the list of shops selling at least one book of that publisher
 
 
- # delegate the render method to a helper module
- # implemented in Concern, in the case where the AR is not found;
- # we also handle the exception in Concern
+
+ # In the case where the AR is not found;
+ # We would handle the exceptions in Concern
 
   def retrieve_shops
     book_ids = @publisher.books.pluck(:id)
     @shops = Shop.selling_books(book_ids)
-
-    render json: @shops
-
+    if @shops.nil?
+      render status: 404, json: {
+        message: "Record not found - cannot find the particular shop that sells books from this publisher",
+      }
+    else
+      render status: 200, json: @shops
+    end
   end
 
 

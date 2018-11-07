@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       end
       scope '/shops' do
         # endpoint 2 PATCH
-        patch '/:id/books' => 'shops#update_as_sold'
+        # I believe Rails treats PATCH as an alias of PUT, while they are
+        # actually different HTTP methods
+        patch '/:id/books/:book_id' => 'shops#update_as_sold'
       end
     end
   end
