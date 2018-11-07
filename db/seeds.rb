@@ -10,7 +10,7 @@ publishers = 3.times.map do
   Publisher.create!()
 end
 
-books = 10.times.map do
+books = 10.times.map do 
   Book.create!(
     :title => Faker::Book.title, # random book title
     publisher: publishers.sample,
@@ -20,7 +20,7 @@ end
 shops = 5.times.map do
   Shop.create!(
     :name => Faker::Company.name,
-    :books_sold_count => Faker::Number.between(1, 20)
+    :books_sold_count => 100
   )
 end
 

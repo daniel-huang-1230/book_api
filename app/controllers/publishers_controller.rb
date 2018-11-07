@@ -1,13 +1,8 @@
 class PublishersController < ApplicationController
   before_action :set_publisher, only: [:retrieve_shops]
-  # GET /publishers/:id
+
+  # GET /api/v1/publishers/:id
   # return the list of shops selling at least one book of that publisher
-
-
-
- # In the case where the AR is not found;
- # We would handle the exceptions in Concern
-
   def retrieve_shops
     book_ids = @publisher.books.pluck(:id)
     @shops = Shop.selling_books(book_ids)

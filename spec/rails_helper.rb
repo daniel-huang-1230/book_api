@@ -43,7 +43,6 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -53,7 +52,9 @@ RSpec.configure do |config|
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+
     DatabaseCleaner.strategy = :transaction
+    load "#{Rails.root}/db/seeds.rb"
   end
 
   # start the transaction strategy as examples are run

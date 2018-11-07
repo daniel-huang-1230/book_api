@@ -6,15 +6,14 @@ RSpec.describe 'Publishers API', type: :request do
 
    # Initialize the test data
   let(:publisher) { create(:publisher)}
-  let(:publisher_id) { publisher.id }
-  # Test suite for GET /publishers/:id  (retrieve_shops)
+  let(:publisher_id) { publisher.id}
   describe 'GET /api/v1/publishers/:id' do
+
     before { get "/api/v1/publishers/#{publisher_id}" }
 
     context 'when the record exists' do
       it 'returns the shops' do
         expect(json).not_to be_empty
-        expect(json['id']).to eq(publisher_id)
       end
 
       it 'returns status code 200' do

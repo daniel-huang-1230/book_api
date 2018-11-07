@@ -1,11 +1,15 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:update_as_sold]
+
+  # PATCH /api/v1/shops/:id/books/:book_id
   #  mark one or multiple copies of a book as sold in a specific shop
   def update_as_sold
-    # request payload example
-    # { "copies_sold" : 5 }
+    # Header:
+    #   Content-Type : application/json
+    # request payload example:
+    #   { "copies_sold" : 5 }
     books_in_stock = @shop.distributions.find_by(:book_id => shop_params[:book_id])
-    copies_sold = shop_params[:copies_sold].try(:to_i)
+    copies_sold = shop_params[:copies_sold]
     if books_in_stock.nil?
       render status: 404, json: {
         message: "Record not found - cannot find the book in this shop",
@@ -20,7 +24,7 @@ class ShopsController < ApplicationController
       # 2. increment total books_sold_count of the shop
       books_in_stock.shop.update_sold_count actual_sold
       render status: 200, json: {
-        message: "Successfully updated the books sold in the shop",
+        message: "Successfully updated #{actual_sold} copies as sold in the shop",
         shop: @shop
       }
     end
