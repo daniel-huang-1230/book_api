@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Things I believe I could improve upon:
 
-Things you may want to cover:
+1. HTTP status code & error handling can be further DRY-out 
+2. Rspec tests need to be more comprehensive and informative, i.e request specs for invalid JSON parameters or header, behaviour-driven tests for model scope, etc.
+3. Cleaner commits 
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+      -- Daniel 11/2018
