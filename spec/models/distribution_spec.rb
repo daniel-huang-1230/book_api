@@ -8,7 +8,7 @@ RSpec.describe Distribution, type: :model do
   it { should belong_to(:shop) }
   # Validation tests for uniqueness
   describe 'validations' do
-    it { should validate_uniqueness_of(:id).scoped_to([:book_id,:shop_id]) }
+    it { should validate_uniqueness_of(:book_id).scoped_to([:shop_id]) }
   end
 
 

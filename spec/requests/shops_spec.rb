@@ -5,9 +5,10 @@ RSpec.describe 'Shops API', type: :request do
    # Test suite for PATCH API -- update_as_sold
 
    # Initialize the test data
-
   describe 'PATCH /api/v1/shops/:id/books/:book_id' do
-    before { patch "/api/v1/shops/1/books/1" }
+    distribution = Distribution.first
+
+    before { patch "/api/v1/shops/#{distribution.shop_id}/books/#{distribution.book_id}" }
 
     context 'when the record exists' do
       it 'returns the shops' do
@@ -28,7 +29,7 @@ RSpec.describe 'Shops API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/cannot find the book in this shop/)
+        expect(response.body).to match(/cannot find /)
       end
     end
   end
